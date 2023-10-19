@@ -4,9 +4,9 @@
  */
 package ejemplo_dom;
 
+import java.io.BufferedReader;
 import java.io.File;
-import javax.lang.model.element.Element;
-import javax.swing.text.Document;
+import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,14 +15,18 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author a22eliassvf
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransformerException {
         // Crear un objeto Perro
         Perro miPerro = new Perro("Fido", 5);
 
@@ -55,7 +59,7 @@ public class Main {
             Document doc = (Document) dBuilder.parse(xmlFile);
 
             Element rootElement = doc.getDocumentElement();
-            Perro perroCargado = Perro.fromXmlElement(rootElement);
+            Perro perroCargado = Perro.fromXmlElement((javax.lang.model.element.Element) rootElement);
 
             System.out.println("Perro cargado desde el archivo XML: " + perroCargado);
         } catch (Exception e) {
