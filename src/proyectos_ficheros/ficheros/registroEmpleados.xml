@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<empleados>
+    <persona>
+        <id>01</id>
+        <nombre>Antonio</nombre>
+        <apellido>Morales</apellido>
+        <direccion>Camelias 100</direccion>
+    </persona>
+    <persona>
+        <id>02</id>
+        <nombre>Juan</nombre>
+        <apellido>García</apellido>
+        <direccion>Camelias 101</direccion>
+    </persona>
+</empleados>

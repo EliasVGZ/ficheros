@@ -1,18 +1,18 @@
-Nombre: Juan
-Edad: 25
-Nota 1: 7
-Nota 2: 8
-Nota 3: 9
-Promedio: 8.0
-Nombre: Maria
-Edad: 23
-Nota 1: 6
-Nota 2: 7
-Nota 3: 8
-Promedio: 7.0
-Nombre: Carlos
-Edad: 28
-Nota 1: 8
-Nota 2: 8
-Nota 3: 9
-Promedio: 8.333333333333334
+nombre: Juan
+edad: 25
+nota 1: 7
+nota 2: 8
+nota 3: 9
+promedio: 8.0
+nombre: Maria
+edad: 23
+nota 1: 6
+nota 2: 7
+nota 3: 8
+promedio: 7.0
+nombre: Carlos
+edad: 28
+nota 1: 8
+nota 2: 8
+nota 3: 9
+promedio: 8.333333333333334

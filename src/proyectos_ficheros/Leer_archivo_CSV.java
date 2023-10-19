@@ -20,13 +20,13 @@ public class Leer_archivo_CSV {
     
     public static void main(String[] args) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String archivoCSV = "C:\\Users\\a22eliassvf\\Documents\\NetBeansProjects\\Proyectos_Ficheros\\src\\proyectos_ficheros\\ficheros\\estudiantes.csv";
-        String archivoSalida = "C:\\Users\\a22eliassvf\\Documents\\NetBeansProjects\\Proyectos_Ficheros\\src\\proyectos_ficheros\\ficheros\\salida_estudiantes";
+        String archivoCSV = "src\\proyectos_ficheros\\ficheros\\estudiantes.csv";
+        String archivoSalida = "src\\proyectos_ficheros\\ficheros\\salida_estudiantes";
         String linea;
         
         try{
-            BufferedReader archivoReader = new BufferedReader(new FileReader(archivoCSV));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida));
+            BufferedReader archivoReader = new BufferedReader(new FileReader(archivoCSV));//LECTURA DE ARCHIVO
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida));//ESCRITURA DE ARCHIVO
             
             
             while ((linea = archivoReader.readLine()) != null) {
@@ -38,10 +38,8 @@ public class Leer_archivo_CSV {
                 int nota3 = Integer.parseInt(datos[4]);
                 System.out.println("Linea leida: " + linea); //VERIFICO LECTURA DE CADA LINEA PORQUE NO ME FUNCIONABA
                 System.out.println(Arrays.toString(datos)); // LECTURA POR MEDIO DE ARRAYS
-                System.out.println("Longitud de datos: " + datos.length); //LONGITUD PARA VERIFICAR QUE REALMENTE HAY 5 
-
-
-
+                System.out.println("Longitud de datos: " + datos.length); //LONGITUD PARA VERIFICAR QUE REALMENTE HAY 5
+                
                 double promedio = (double)(nota1+nota2+nota3)/3;
                 
                 //SALIDA POR PANTALLA
@@ -55,13 +53,13 @@ public class Leer_archivo_CSV {
                 System.out.println();*/
                 
                 //SALIDA POR ARCHIVO NUEVO
-                //TODO NO FUNCIONA!!!!
-                bw.write("Nombre: " + nombre + "\n");
-                bw.write("Edad: " + edad + "\n");
-                bw.write("Nota 1: " + nota1 + "\n");
-                bw.write("Nota 2: " + nota2 + "\n");
-                bw.write("Nota 3: " + nota3 + "\n");
-                bw.write("Promedio: " + promedio + "\n");
+                
+                bw.write("nombre: " + nombre + "\n");
+                bw.write("edad: " + edad + "\n");
+                bw.write("nota 1: " + nota1 + "\n");
+                bw.write("nota 2: " + nota2 + "\n");
+                bw.write("nota 3: " + nota3 + "\n");
+                bw.write("promedio: " + promedio + "\n");
             }
             
             bw.close();
