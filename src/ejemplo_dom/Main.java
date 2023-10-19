@@ -4,7 +4,6 @@
  */
 package ejemplo_dom;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
@@ -59,7 +58,7 @@ public class Main {
             Document doc = (Document) dBuilder.parse(xmlFile);
 
             Element rootElement = doc.getDocumentElement();
-            Perro perroCargado = Perro.fromXmlElement((javax.lang.model.element.Element) rootElement);
+            Perro perroCargado = Perro.fromXmlElement((Element) (javax.lang.model.element.Element) rootElement);
 
             System.out.println("Perro cargado desde el archivo XML: " + perroCargado);
         } catch (Exception e) {
