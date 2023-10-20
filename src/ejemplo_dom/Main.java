@@ -19,6 +19,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+;
+
 
 /**
  *
@@ -31,6 +33,7 @@ public class Main {
 
         // Convertir el objeto a un elemento XML
         try {
+            String rutaArchivoPerro = "src\\proyectos_ficheros\\ficheros\\perro.xml";
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = (Document) builder.newDocument();
@@ -42,7 +45,7 @@ public class Main {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource((Node) doc);
-            StreamResult result = new StreamResult(new File("perro.xml"));
+            StreamResult result = new StreamResult(new File(rutaArchivoPerro));
             transformer.transform(source, result);
 
             System.out.println("Perro guardado correctamente como XML.");
@@ -52,13 +55,15 @@ public class Main {
 
         // Leer el objeto desde el archivo XML
         try {
-            File xmlFile = new File("perro.xml");
+            String rutaArchivoPerro = "src\\proyectos_ficheros\\ficheros\\perro.xml";
+            File xmlFile = new File(rutaArchivoPerro);
+            
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = (Document) dBuilder.parse(xmlFile);
 
             Element rootElement = doc.getDocumentElement();
-            Perro perroCargado = Perro.fromXmlElement((Element) (javax.lang.model.element.Element) rootElement);
+            Perro perroCargado = Perro.fromXmlElement((Element) rootElement);
 
             System.out.println("Perro cargado desde el archivo XML: " + perroCargado);
         } catch (Exception e) {
