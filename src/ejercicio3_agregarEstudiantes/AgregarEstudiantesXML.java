@@ -27,57 +27,49 @@ import org.xml.sax.SAXException;
  */
 public class AgregarEstudiantesXML {
     public static void main(String[] args) throws TransformerException, SAXException, IOException, ParserConfigurationException {
-       
-           
-        try{
-            // Paso 1: Crear el Documento XML
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder=dbf.newDocumentBuilder();
+        try {
             
-            Document registroEstudiantes = builder.newDocument(); //Sustitui estÃ¡ linea por las dos siguientes en comentarios
-            
-            registroEstudiantes.setXmlVersion("1.0");
-            
-            // Paso 2: Crear elementos y agregarlos al documento
-            Element elemRaiz = registroEstudiantes.createElement("estudiante");
-            registroEstudiantes.appendChild(elemRaiz);
-            
-            //añadir estudiante AL ARCHIVO XML
-            agregarEstudiante(registroEstudiantes, 3, "pepe", 32);
-            agregarEstudiante(registroEstudiantes, 4, "maria", 31);
+            // Cargar el archivo XML existente
+            File lecturaArchivo = new File("src\\proyectos_ficheros\\ficheros\\estudiantes.xml");
 
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = dbf.newDocumentBuilder();
+
+            Document registroEstudiantes;
             
-            
-            
-            // Paso 3: Escribir el contenido del documento XML a un archivo
+            if (lecturaArchivo.exists()) {
+                // Si el archivo ya existe, cargarlo
+                registroEstudiantes = builder.parse(lecturaArchivo);
+                registroEstudiantes.getDocumentElement().normalize();
+            } else {
+                // Si el archivo no existe, crear un nuevo documento
+                registroEstudiantes = builder.newDocument();
+                registroEstudiantes.appendChild(registroEstudiantes.createElement("estudiantes"));
+            }
+
+            // Agregar nuevos estudiantes
+            agregarEstudiante(registroEstudiantes, 3, "tania", 31);
+            agregarEstudiante(registroEstudiantes, 4, "marta", 40);
+
+            // Guardar el documento modificado
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            
-            //XML INDENTADO
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             
             DOMSource source = new DOMSource(registroEstudiantes);
             
-            //Especifica la ubicaciÃ³n del archivo de salida
-            StreamResult result = new StreamResult("src\\proyectos_ficheros\\ficheros\\estudiantes.xml");
-
-            // Realiza la transformaciÃ³n y escribe en el archivo
+            StreamResult result = new StreamResult(new File("src\\proyectos_ficheros\\ficheros\\estudiantes.xml"));
             transformer.transform(source, result);
 
-            System.out.println("estudiantes agregados .");
-           
-        
-        }catch (Exception e){
+            System.out.println("estudiante agregado.");
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        
-        
     }
-    
+
     private static void agregarEstudiante(Document registroEstudiantes, int id, String nombre, int edad) {
         Element elemEstudiante = registroEstudiantes.createElement("estudiante");
-        registroEstudiantes.getDocumentElement().appendChild(elemEstudiante);
 
         Element elemId = registroEstudiantes.createElement("id");
         elemId.appendChild(registroEstudiantes.createTextNode(Integer.toString(id)));
@@ -91,9 +83,9 @@ public class AgregarEstudiantesXML {
         elemEdad.appendChild(registroEstudiantes.createTextNode(Integer.toString(edad)));
         elemEstudiante.appendChild(elemEdad);
 
-        
-        
+        registroEstudiantes.getDocumentElement().appendChild(elemEstudiante);
     }
+
 
     
 }

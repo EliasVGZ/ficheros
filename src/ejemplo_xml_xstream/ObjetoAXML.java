@@ -9,6 +9,8 @@ package ejemplo_xml_xstream;
  * @author a22eliassvf
  */
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.security.AnyTypePermission;
+import com.thoughtworks.xstream.security.TypePermission;
 
 public class ObjetoAXML {
     public static void main(String[] args) {
