@@ -4,8 +4,10 @@
  */
 package ejercicio3_agregarEstudiantes;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,7 +28,11 @@ import org.xml.sax.SAXException;
  * @author a22eliassvf
  */
 public class AgregarEstudiantesXML {
+    
     public static void main(String[] args) throws TransformerException, SAXException, IOException, ParserConfigurationException {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
         try {
             
             // Cargar el archivo XML existente
@@ -38,30 +44,54 @@ public class AgregarEstudiantesXML {
             Document registroEstudiantes;
             
             if (lecturaArchivo.exists()) {
-                // Si el archivo ya existe, cargarlo
+                // si el archivo existe se carga
                 registroEstudiantes = builder.parse(lecturaArchivo);
                 registroEstudiantes.getDocumentElement().normalize();
+                
+                //METODO MOSTRAR ESTUDIANTES
+                mostrarEstudiantesExistente(registroEstudiantes);
             } else {
-                // Si el archivo no existe, crear un nuevo documento
+                // si el archivo no existe se crea uno nuevo
                 registroEstudiantes = builder.newDocument();
                 registroEstudiantes.appendChild(registroEstudiantes.createElement("estudiantes"));
             }
 
-            // Agregar nuevos estudiantes
-            agregarEstudiante(registroEstudiantes, 3, "tania", 31);
-            agregarEstudiante(registroEstudiantes, 4, "marta", 40);
+            String opcion;
+            do{
+                
+                 // Agregar nuevos estudiantes
+                System.out.println("ingrese id del nuevo estudiante");
+                int id = Integer.parseInt(br.readLine());
+                System.out.println("ingrese nombre del nuevo estudiante");
+                String nombre = br.readLine();
+                System.out.println("ingrese edad del nuevo estudiante");
+                int edad = Integer.parseInt(br.readLine());
+                agregarEstudiante(registroEstudiantes, id, nombre, edad);
+                System.out.println("estudiante agregado.");
+                
+                System.out.println("Quieres añadir un nuevo estudiante (s/n)");
+                opcion = br.readLine();
+                
+            }while(opcion.equalsIgnoreCase("s"));
+           
+           
+            
+            //agregarEstudiante(registroEstudiantes, 4, "marta", 40);
 
             // Guardar el documento modificado
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            
+           
             
             DOMSource source = new DOMSource(registroEstudiantes);
             
             StreamResult result = new StreamResult(new File("src\\proyectos_ficheros\\ficheros\\estudiantes.xml"));
             transformer.transform(source, result);
 
-            System.out.println("estudiante agregado.");
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,6 +115,26 @@ public class AgregarEstudiantesXML {
 
         registroEstudiantes.getDocumentElement().appendChild(elemEstudiante);
     }
+    
+    
+    //LECTURA DEL ARCHIVO Y MOSTRAR POR PANTALLA
+    private static void mostrarEstudiantesExistente(Document documento) {
+        NodeList listaEstudiantes = documento.getElementsByTagName("estudiante");
+    
+        System.out.println("Estudiantes existentes en el XML:");
+
+            for (int i = 0; i < listaEstudiantes.getLength(); i++) {
+                Node nodo = listaEstudiantes.item(i);
+                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                    Element estudiante = (Element) nodo;
+                    String id = estudiante.getElementsByTagName("id").item(0).getTextContent();
+                    String nombre = estudiante.getElementsByTagName("nombre").item(0).getTextContent();
+                    String edad = estudiante.getElementsByTagName("edad").item(0).getTextContent();
+                    System.out.println("ID: " + id + " Nombre: " + nombre + " Edad: " + edad);
+                }
+            }
+     }
+
 
 
     

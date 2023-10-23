@@ -30,15 +30,13 @@ public class PrecioLibros {
             
             double sumaPrecio = 0;
             
-            
-            
             // iterar a través de los nodos 'libro'
             for (int i = 0; i < libros.getLength(); i++) {
                 Node libro = libros.item(i);
                 if (libro.getNodeType() == Node.ELEMENT_NODE) {
                     Element elementoLibro = (Element) libro;
 
-                    // Obtener el título
+                    // Obtener el titulo
                     String titulo = elementoLibro.getElementsByTagName("titulo").item(0).getTextContent();
 
                     // Obtener el autor
@@ -60,8 +58,6 @@ public class PrecioLibros {
                     double precioPromedio = calcularPrecioPromedio(sumaPrecio, libros.getLength());
                     System.out.println(String.format("Precio promedio LIBROS %.2f", precioPromedio)); //SOLO ME APARECEN 2 DECIMALES
             
-    
-    
     
         }catch (Exception e) {
             e.printStackTrace();
