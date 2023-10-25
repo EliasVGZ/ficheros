@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Proyectos_Ficheros">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Proyectos_Ficheros.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
