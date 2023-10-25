@@ -17,19 +17,25 @@ import org.xml.sax.SAXException;
  */
 public class Principal {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-        
-         File archivo = new File("src\\proyectos_ficheros\\ficheros\\librosinfo.xml");
 
-        if (!archivo.exists()) {
-            // Si el archivo no existe, crea uno nuevo
-            archivo.createNewFile();
+        try{
+            File archivo = new File("src\\proyectos_ficheros\\ficheros\\librosinfo.xml");
+
+            if (!archivo.exists()) {
+                // Si el archivo no existe, crea uno nuevo
+                archivo.createNewFile();
+            }
+
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+
+            SAXParser parser = factory.newSAXParser();
+            LeerLibrosInfo leerLibro = new LeerLibrosInfo();
+            parser.parse(archivo, leerLibro);
+
+        }catch (ParserConfigurationException | SAXException | IOException ex){
+            System.out.println(ex.getMessage());
         }
 
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-
-        SAXParser parser = factory.newSAXParser();
-        LeerLibrosInfo leerLibro = new LeerLibrosInfo();
-        parser.parse(archivo, leerLibro);
         
       
     }

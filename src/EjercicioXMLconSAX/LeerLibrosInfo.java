@@ -35,6 +35,10 @@ public class LeerLibrosInfo extends DefaultHandler{
         currentElement = qName;
         //System.out.printf("\t Inicio del elemento %s %n", localName);
         currentText = new StringBuilder();
+        if (qName.equals("libro")) {
+            String anio = attributes.getValue("año");
+            System.out.println("Año: " + anio);
+        }
         
     }
     public void characters(char[] ch, int start, int length) throws SAXException{
@@ -46,10 +50,25 @@ public class LeerLibrosInfo extends DefaultHandler{
         
     }
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (qName.equals("libro")) {
-            System.out.println("Año: " + currentText.toString().trim());
-        } else if (qName.equals("titulo") || qName.equals("apellido") || qName.equals("nombre") || qName.equals("editorial") || qName.equals("precio")) {
-            System.out.println(qName.substring(0, 1).toUpperCase() + qName.substring(1) + ": " + currentText.toString().trim());
+        switch (qName) {
+            case "libro":
+                System.out.println("");
+                break;
+            case "titulo":
+                System.out.println("Titulo: " + this.currentText.toString());
+                break;
+            case "apellido":
+                System.out.println("Apellido autor: " + this.currentText.toString());
+                break;
+            case "nombre":
+                System.out.println("Nombre autor: " + this.currentText.toString());
+                break;
+            case "editorial":
+                System.out.println("Editorial: " + this.currentText.toString());
+                break;
+            case "precio":
+                System.out.println("Precio: " + this.currentText.toString());
+                break;
         }
     }
     
