@@ -2,8 +2,7 @@ package Tarea_Evaluable_UD1_ManejoFicheros;
 
 import java.io.Serializable;
 
-import static Validaciones.validaciones.validaDNI_Exp;
-import static Validaciones.validaciones.validarNombre;
+import static Validaciones.validaciones.*;
 
 public class Empleados implements Serializable {
 
@@ -11,6 +10,16 @@ public class Empleados implements Serializable {
     private String nombre;
     private String apellidos;
     private double salario;
+
+    @Override
+    public String toString() {
+        return "Empleados{" +
+                "NIF='" + NIF + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", salario=" + salario +
+                '}';
+    }
 
     public Empleados() {
     }
@@ -20,7 +29,10 @@ public class Empleados implements Serializable {
             throw new Exception("DNI inválido.");
         }
         if (!validarNombre(nombre)) {
-            throw new Exception("Teléfono inválido.");
+            throw new Exception("Nombre no valido.");
+        }
+        if (!validarApellido(apellidos)){
+            throw new Exception("Apellido no valido.");
         }
         this.NIF = NIF;
         this.nombre = nombre;
