@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static Validaciones.validaciones.validaDNI_Exp;
 
@@ -14,6 +15,22 @@ public class Principal {
     static ArrayList<Empleados> listadoEmpleados = new ArrayList<>();
     
     public static void main(String[] args) throws Exception {
+
+        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
+
+        //Creo 5 empleados para tener
+        Empleados empleado1 = new Empleados("00000000Y", "Juan", "Perez", 2000.0);
+        Empleados empleado2 = new Empleados("98765432B", "Maria", "Gomez", 2500.0);
+        Empleados empleado3 = new Empleados("55555555C", "Pedro", "Rodriguez", 1800.0);
+        Empleados empleado4 = new Empleados("11111111D", "Laura", "Martinez", 2200.0);
+        Empleados empleado5 = new Empleados("88888888E", "Carlos", "Sanchez", 1900.0);
+        listadoEmpleados.add(empleado1);
+        listadoEmpleados.add(empleado2);
+        listadoEmpleados.add(empleado3);
+        listadoEmpleados.add(empleado4);
+        listadoEmpleados.add(empleado5);
+
+        empleadoTXT.escrituraEmpleados(listadoEmpleados);
 
         menu();
 
@@ -40,18 +57,16 @@ public class Principal {
             switch (opcion) {
                 case 1: consultar();
                 break;
-                case 2: {
-                }
+                case 2: insercion();
                 break;
-                case 3: {
-                }
+                case 3: modificacion();
                 break;
-                case 4: {
-                }
+                case 4: borrado();
                 break;
-                case 5: {
-                }
+                case 5: listarEmpleados();
                 break;
+                default:
+                    System.out.println("opcion no valida");
             }
 
         }
@@ -85,20 +100,126 @@ public class Principal {
         }
     }
 
-    public static void insercion() throws IOException {
-        boolean encontradonif = false;
-        System.out.println("Insertar la informacion del nuevo empleado");
-        System.out.println("NIF:");
-        String nif = br.readLine();
-        for (Empleados info : listadoEmpleados) {
-            if (nif.equalsIgnoreCase(info.getNIF())) {
-                System.out.println("El empleado ya existe");
-                encontradonif = true;
-                break;
+    public static void insercion() throws Exception {
+
+        String opcion;
+
+        do {
+            System.out.println("Insertar la informacion del nuevo empleado");
+            System.out.println("NIF:");
+            String nif = br.readLine();
+
+            boolean encontradonif = false;
+
+            for (Empleados info : listadoEmpleados) {
+                if (nif.equalsIgnoreCase(info.getNIF())) {
+                    System.out.println("El empleado ya existe");
+                    encontradonif = true;
+                    break;
+                }
+            }
+
+            if (!encontradonif) {
+                System.out.println("Nombre del empleado");
+                String nombre = br.readLine();
+                System.out.println("Apellido del empleado");
+                String apellido = br.readLine();
+                System.out.println("Salario");
+                Double salario = Double.parseDouble(br.readLine());
+
+                Empleados e1 = new Empleados(nif, nombre, apellido, salario);
+                listadoEmpleados.add(e1);
+                System.out.println("Empleado agregado");
+            }
+
+            System.out.println("Quieres agregar otro empleado? (s/n)");
+            opcion = br.readLine();
+
+        } while (opcion.equalsIgnoreCase("s"));
+    }
+
+    public static void modificacion() throws IOException {
+
+
+        String opcion;
+
+        do {
+            System.out.println("modificar salario de un empleado");
+            System.out.println("NIF:");
+            String nif = br.readLine();
+
+            boolean encontradonif = false;
+
+            for (Empleados info : listadoEmpleados) {
+                if (nif.equalsIgnoreCase(info.getNIF())) {
+                    System.out.println("Empleado encontrado, escriba el nuevo salario");
+                    Double nuevoSalario = Double.parseDouble(br.readLine());
+                    info.setSalario(nuevoSalario);
+                    encontradonif = true;
+                    break;
+                }
+            }
+
+            if (!encontradonif) {
+                System.out.println("Empleado no existe");
+            }
+
+            System.out.println("Quieres modificar salario de otro empleado? (s/n)");
+            opcion = br.readLine();
+        } while (opcion.equalsIgnoreCase("s"));
+    }
+
+    public static void borrado() throws IOException {
+
+        //TODO NO SÉ SI ESTO ES LO QUE SE PIDE
+        String opcion;
+
+
+
+        do {
+            System.out.println("Borrar empleado");
+            System.out.println("NIF:");
+            String nif = br.readLine();
+
+            boolean encontradonif = false;
+
+            /*Iterator<Empleados> iterator = listadoEmpleados.iterator();
+            while(iterator.hasNext()){
+                Empleados info = iterator.next();
+                if(nif.equalsIgnoreCase(info.getNIF())){
+                    iterator.remove();
+                    System.out.println("empleado eliminad");
+                    encontradonif=true;
+                }
+            }*/
+            for (Empleados info : listadoEmpleados) {
+                if (nif.equalsIgnoreCase(info.getNIF())) {
+                    info.setBorrado(true); //BORRADO LOGICO
+                    System.out.println("Empleado con NIF " + nif + " borrado lógicamente.");
+                    encontradonif = true;
+                    break;
+                }
+            }
+
+            if (!encontradonif) {
+                System.out.println("Empleado no existe");
+            }
+
+            System.out.println("Quieres borrar otro empleado? (s/n)");
+            opcion = br.readLine();
+        } while (opcion.equalsIgnoreCase("s"));
+    }
+
+    public static void listarEmpleados(){
+        System.out.println("Lista empleados");
+        for(Empleados info: listadoEmpleados){
+            if(!info.isBorrado()){
+                System.out.println(info.toString());
             }
         }
-        // TODO SEGUIR AÑDIENDO EMPLEADO
     }
+
+
 
 
 }

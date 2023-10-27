@@ -1,0 +1,5 @@
+00000000Y,Perez, Juan, 2000.0
+98765432B,Gomez, Maria, 2500.0
+55555555C,Rodriguez, Pedro, 1800.0
+11111111D,Martinez, Laura, 2200.0
+88888888E,Sanchez, Carlos, 1900.0

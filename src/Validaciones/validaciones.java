@@ -47,7 +47,7 @@ public class validaciones {
     //            3. Valida si una cadena es un DNI: 8 numeros y una letra al final.
     public static boolean validaDNI_Exp(String DNI){
         boolean respuesta=false;
-        if (DNI.matches("^[1-9]{8}[T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z|S|Q|V|H|L|C|K|E]{1}$")){
+        if (DNI.matches("^[0-9]{8}[TtRrWwAaGgMmYyFfPpDdXxBbNnJjZzSsQqVvHhLlCcKkEe]{1}$")){
             respuesta= true;
         }
         return respuesta;
@@ -69,14 +69,14 @@ public class validaciones {
 
     public static boolean validarNombre(String nombre){
         boolean respuesta=false;
-        if(nombre.matches("^([A-Z][a-z]+[ ]?){1,20}$")&&nombre.length()<10){
+        if(nombre.matches("^([A-Za-z][a-z]+[ ]?){1,20}$")&&nombre.length()<10){
             respuesta =true;
         }
         return respuesta;
     }
     public static boolean validarApellido(String apellido){
         boolean respuesta=false;
-        if(apellido.matches("^([A-Z][a-z]+[ ]?){1,20}$")&&apellido.length()<20){
+        if(apellido.matches("^([A-Za-z][a-z]+[ ]?){1,20}$")&&apellido.length()<20){
             respuesta =true;
         }
         return respuesta;

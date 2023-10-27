@@ -10,6 +10,15 @@ public class Empleados implements Serializable {
     private String nombre;
     private String apellidos;
     private double salario;
+    private boolean borrado;
+
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
+    }
 
     @Override
     public String toString() {
