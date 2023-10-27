@@ -39,7 +39,6 @@ public class LeerLibrosInfo extends DefaultHandler{
             String anio = attributes.getValue("año");
             System.out.println("Año: " + anio);
         }
-        
     }
     public void characters(char[] ch, int start, int length) throws SAXException{
         //super.characters(ch, start, length);
