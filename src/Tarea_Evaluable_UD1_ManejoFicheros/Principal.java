@@ -1,6 +1,14 @@
 package Tarea_Evaluable_UD1_ManejoFicheros;
 
+import EjercicioXMLconSAX.LeerLibrosInfo;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLOutput;
@@ -17,6 +25,9 @@ public class Principal {
     public static void main(String[] args) throws Exception {
 
         EmpleadoTXT empleadoTXT = new EmpleadoTXT();
+        EmpleadosDOM empleadoxml = new EmpleadosDOM();
+
+
 
         //Creo 5 empleados para tener
         Empleados empleado1 = new Empleados("00000000Y", "Juan", "Perez", 2000.0);
@@ -31,6 +42,8 @@ public class Principal {
         listadoEmpleados.add(empleado5);
 
         empleadoTXT.escrituraEmpleados(listadoEmpleados);
+        empleadoxml.lecturaEmpleados(listadoEmpleados);
+
 
         menu();
 
@@ -43,8 +56,10 @@ public class Principal {
 
     public static void menu() throws Exception {
 
+
+
         int opcion = 0;
-        while (opcion != 6) {
+        while (opcion != 7) {
             System.out.println("Elige una opcion (pulsa 6 para salir)");
             System.out.println("--MENU--");
             System.out.println("1. Consulta");
@@ -52,6 +67,7 @@ public class Principal {
             System.out.println("3. Modificación");
             System.out.println("4. Borrado");
             System.out.println("5. Listar");
+            System.out.println("6. Lectura archivo con SAX");
             opcion = Integer.parseInt(br.readLine());
 
             switch (opcion) {
@@ -65,6 +81,8 @@ public class Principal {
                 break;
                 case 5: listarEmpleados();
                 break;
+                case 6: lecturaSax();
+                    break;
                 default:
                     System.out.println("opcion no valida");
             }
@@ -102,6 +120,8 @@ public class Principal {
 
     public static void insercion() throws Exception {
 
+
+        EmpleadosDOM empleadoDom = new EmpleadosDOM();
         String opcion;
 
         do {
@@ -129,6 +149,7 @@ public class Principal {
 
                 Empleados e1 = new Empleados(nif, nombre, apellido, salario);
                 listadoEmpleados.add(e1);
+                //TODO NO FUNCIONA empleadoDom.agregarEmpleado(registroEmpleados, nif, nombre, apellido, salario );
                 System.out.println("Empleado agregado");
             }
 
@@ -216,6 +237,26 @@ public class Principal {
             if(!info.isBorrado()){
                 System.out.println(info.toString());
             }
+        }
+    }
+
+    public static void lecturaSax(){
+        try{
+            File archivo = new File("src\\Tarea_Evaluable_UD1_ManejoFicheros\\empleados.xml");
+
+            if (!archivo.exists()) {
+                // Si el archivo no existe, crea uno nuevo
+                archivo.createNewFile();
+            }
+
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+
+            SAXParser parser = factory.newSAXParser();
+            EmpleadosSAX leeEmpleados = new EmpleadosSAX();
+            parser.parse(archivo, leeEmpleados);
+
+        }catch (ParserConfigurationException | SAXException | IOException ex){
+            System.out.println(ex.getMessage());
         }
     }
 

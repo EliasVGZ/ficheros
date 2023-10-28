@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<empleados>
+    <empleado>
+        <nif>00000000Y</nif>
+        <nombre>Juan</nombre>
+        <apellido>Perez</apellido>
+        <salario>2000.0</salario>
+    </empleado>
+    <empleado>
+        <nif>98765432B</nif>
+        <nombre>Maria</nombre>
+        <apellido>Gomez</apellido>
+        <salario>2500.0</salario>
+    </empleado>
+    <empleado>
+        <nif>55555555C</nif>
+        <nombre>Pedro</nombre>
+        <apellido>Rodriguez</apellido>
+        <salario>1800.0</salario>
+    </empleado>
+    <empleado>
+        <nif>11111111D</nif>
+        <nombre>Laura</nombre>
+        <apellido>Martinez</apellido>
+        <salario>2200.0</salario>
+    </empleado>
+    <empleado>
+        <nif>88888888E</nif>
+        <nombre>Carlos</nombre>
+        <apellido>Sanchez</apellido>
+        <salario>1900.0</salario>
+    </empleado>
+</empleados>

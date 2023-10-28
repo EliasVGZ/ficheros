@@ -1,5 +1,8 @@
 package Tarea_Evaluable_UD1_ManejoFicheros;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.io.Serializable;
 
 import static Validaciones.validaciones.*;
@@ -80,4 +83,6 @@ public class Empleados implements Serializable {
     public void setSalario(double salario) {
         this.salario = salario;
     }
+
+
 }
