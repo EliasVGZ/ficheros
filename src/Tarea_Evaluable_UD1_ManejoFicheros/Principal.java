@@ -43,7 +43,7 @@ public class Principal {
         listadoEmpleados.add(empleado5);
 
         listadoEmpleados = empleadoTXT.lecturaEmpleadosaTXT();
-        empleadoxml.lecturaEmpleados(listadoEmpleados);
+        //empleadoxml.lecturaEmpleados(listadoEmpleados);
 
 
         menu();
@@ -52,9 +52,10 @@ public class Principal {
     public static void menu() throws Exception {
 
         EmpleadoTXT empleadoTXT = new EmpleadoTXT();
+        EmpleadosDOM empleados = new EmpleadosDOM();
         int opcion = 0;
         while (opcion != 8) {
-            System.out.println("Elige una opcion (pulsa 9 para salir)");
+            System.out.println("Elige una opcion (pulsa 8 para salir)");
             System.out.println("--MENU--");
             System.out.println("1. Consulta");
             System.out.println("2. Insercion");
@@ -63,7 +64,6 @@ public class Principal {
             System.out.println("5. Listar");
             System.out.println("6. Lectura archivo TXT");
             System.out.println("7. Menu DOM");
-            System.out.println("8. Lectura archivo con SAX");
             opcion = Integer.parseInt(br.readLine());
 
             switch (opcion) {
@@ -79,8 +79,9 @@ public class Principal {
                 break;
                 case 6: empleadoTXT.lecturaEmpleados();
                 break;
-                case 7: lecturaSax();
+                case 7: empleados.menuDOM();
                 break;
+
                 default:
                     System.out.println("opcion no valida");
             }
@@ -245,27 +246,7 @@ public class Principal {
         }
     }
 
-    public static void lecturaSax(){
-        try{
-            File archivo = new File("src\\Tarea_Evaluable_UD1_ManejoFicheros\\empleados.xml");
 
-            if (!archivo.exists()) {
-                // Si el archivo no existe, crea uno nuevo
-                archivo.createNewFile();
-            }
-
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-
-            SAXParser parser = factory.newSAXParser();
-            EmpleadosSAX leeEmpleados = new EmpleadosSAX();
-            parser.parse(archivo, leeEmpleados);
-
-        }catch (ParserConfigurationException | SAXException | IOException ex){
-            System.out.println(ex.getMessage());
-        }
-
-
-    }
 
 
 
