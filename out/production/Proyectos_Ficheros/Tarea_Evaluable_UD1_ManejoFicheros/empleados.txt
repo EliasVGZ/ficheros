@@ -3,3 +3,5 @@
 55555555C,Rodriguez, Pedro, 1800.0
 11111111D,Martinez, Laura, 2200.0
 88888888E,Sanchez, Carlos, 1900.0
+88888888F,teis, brais, 10000.0
+12312323P,garcia, pepito, 1000.0

@@ -21,53 +21,49 @@ public class Principal {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static ArrayList<Empleados> listadoEmpleados = new ArrayList<>();
+
     
     public static void main(String[] args) throws Exception {
 
-        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
+
         EmpleadosDOM empleadoxml = new EmpleadosDOM();
+        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
 
 
-
-        //Creo 5 empleados para tener
         Empleados empleado1 = new Empleados("00000000Y", "Juan", "Perez", 2000.0);
         Empleados empleado2 = new Empleados("98765432B", "Maria", "Gomez", 2500.0);
         Empleados empleado3 = new Empleados("55555555C", "Pedro", "Rodriguez", 1800.0);
         Empleados empleado4 = new Empleados("11111111D", "Laura", "Martinez", 2200.0);
         Empleados empleado5 = new Empleados("88888888E", "Carlos", "Sanchez", 1900.0);
+
         listadoEmpleados.add(empleado1);
         listadoEmpleados.add(empleado2);
         listadoEmpleados.add(empleado3);
         listadoEmpleados.add(empleado4);
         listadoEmpleados.add(empleado5);
 
-        empleadoTXT.escrituraEmpleados(listadoEmpleados);
+        listadoEmpleados = empleadoTXT.lecturaEmpleadosaTXT();
         empleadoxml.lecturaEmpleados(listadoEmpleados);
 
 
         menu();
-
-
-
-
-
     }
-
 
     public static void menu() throws Exception {
 
-
-
+        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
         int opcion = 0;
-        while (opcion != 7) {
-            System.out.println("Elige una opcion (pulsa 6 para salir)");
+        while (opcion != 8) {
+            System.out.println("Elige una opcion (pulsa 9 para salir)");
             System.out.println("--MENU--");
             System.out.println("1. Consulta");
             System.out.println("2. Insercion");
             System.out.println("3. Modificación");
             System.out.println("4. Borrado");
             System.out.println("5. Listar");
-            System.out.println("6. Lectura archivo con SAX");
+            System.out.println("6. Lectura archivo TXT");
+            System.out.println("7. Menu DOM");
+            System.out.println("8. Lectura archivo con SAX");
             opcion = Integer.parseInt(br.readLine());
 
             switch (opcion) {
@@ -81,8 +77,10 @@ public class Principal {
                 break;
                 case 5: listarEmpleados();
                 break;
-                case 6: lecturaSax();
-                    break;
+                case 6: empleadoTXT.lecturaEmpleados();
+                break;
+                case 7: lecturaSax();
+                break;
                 default:
                     System.out.println("opcion no valida");
             }
@@ -120,8 +118,8 @@ public class Principal {
 
     public static void insercion() throws Exception {
 
+        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
 
-        EmpleadosDOM empleadoDom = new EmpleadosDOM();
         String opcion;
 
         do {
@@ -149,7 +147,7 @@ public class Principal {
 
                 Empleados e1 = new Empleados(nif, nombre, apellido, salario);
                 listadoEmpleados.add(e1);
-                //TODO NO FUNCIONA empleadoDom.agregarEmpleado(registroEmpleados, nif, nombre, apellido, salario );
+
                 System.out.println("Empleado agregado");
             }
 
@@ -157,11 +155,13 @@ public class Principal {
             opcion = br.readLine();
 
         } while (opcion.equalsIgnoreCase("s"));
+
+        empleadoTXT.escrituraEmpleados(listadoEmpleados);
     }
 
     public static void modificacion() throws IOException {
 
-
+        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
         String opcion;
 
         do {
@@ -188,10 +188,13 @@ public class Principal {
             System.out.println("Quieres modificar salario de otro empleado? (s/n)");
             opcion = br.readLine();
         } while (opcion.equalsIgnoreCase("s"));
+        empleadoTXT.escrituraEmpleados(listadoEmpleados);
+
     }
 
     public static void borrado() throws IOException {
 
+        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
         //TODO NO SÉ SI ESTO ES LO QUE SE PIDE
         String opcion;
 
@@ -229,9 +232,11 @@ public class Principal {
             System.out.println("Quieres borrar otro empleado? (s/n)");
             opcion = br.readLine();
         } while (opcion.equalsIgnoreCase("s"));
+        empleadoTXT.escrituraEmpleados(listadoEmpleados);
     }
 
     public static void listarEmpleados(){
+
         System.out.println("Lista empleados");
         for(Empleados info: listadoEmpleados){
             if(!info.isBorrado()){
@@ -258,7 +263,11 @@ public class Principal {
         }catch (ParserConfigurationException | SAXException | IOException ex){
             System.out.println(ex.getMessage());
         }
+
+
     }
+
+
 
 
 

@@ -21,8 +21,31 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 
+import static Tarea_Evaluable_UD1_ManejoFicheros.Principal.br;
+
 public class EmpleadosDOM {
 
+
+    public void menuDOM() throws IOException {
+        int opcion = 0;
+        while (opcion != 8) {
+            System.out.println("Elige una opcion (pulsa 9 para salir)");
+            System.out.println("--MENU--");
+            System.out.println("1. Insertar a XML");
+            System.out.println("2. Modificar a XML");
+            System.out.println("3. Borrar a XML");
+            System.out.println("4. Consultar a XML");
+
+            opcion = Integer.parseInt(br.readLine());
+
+            switch (opcion) {
+
+                default:
+                    System.out.println("opcion no valida");
+            }
+
+        }
+    }
     public void lecturaEmpleados(ArrayList<Empleados> listaEmpleados){
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -58,9 +81,6 @@ public class EmpleadosDOM {
             Transformer transformer = transformerFactory.newTransformer();
 
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-
-
             DOMSource source = new DOMSource(registroEmpleados);
 
             StreamResult result = new StreamResult(new File("src\\Tarea_Evaluable_UD1_ManejoFicheros\\empleados.xml"));
@@ -135,4 +155,8 @@ public class EmpleadosDOM {
 
         registroEmpleados.getDocumentElement().appendChild(elemEmpleado);
     }
+
+
+
+
 }
