@@ -21,13 +21,14 @@ public class Principal {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static ArrayList<Empleados> listadoEmpleados = new ArrayList<>();
+    static EmpleadoTXT empleadoTXT = new EmpleadoTXT();
 
     
     public static void main(String[] args) throws Exception {
 
 
         EmpleadosDOM empleadoxml = new EmpleadosDOM();
-        EmpleadoTXT empleadoTXT = new EmpleadoTXT();
+        //EmpleadoTXT empleadoTXT = new EmpleadoTXT();
 
 
         Empleados empleado1 = new Empleados("00000000Y", "Juan", "Perez", 2000.0);
@@ -222,6 +223,7 @@ public class Principal {
                     info.setBorrado(true); //BORRADO LOGICO
                     System.out.println("Empleado con NIF " + nif + " borrado lógicamente.");
                     encontradonif = true;
+
                     break;
                 }
             }
@@ -234,6 +236,7 @@ public class Principal {
             opcion = br.readLine();
         } while (opcion.equalsIgnoreCase("s"));
         empleadoTXT.escrituraEmpleados(listadoEmpleados);
+
     }
 
     public static void listarEmpleados(){
@@ -244,6 +247,7 @@ public class Principal {
                 System.out.println(info.toString());
             }
         }
+
     }
 
 

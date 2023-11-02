@@ -11,7 +11,7 @@ public class EmpleadoTXT {
 
         File ruta = new File("src\\Tarea_Evaluable_UD1_ManejoFicheros\\empleados.txt");
 
-        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(ruta, true))) {
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(ruta, false))) {
             for (Empleados empleado : listaEmpleados) {
                 escritura.write(empleado.getNIF() + "," + empleado.getApellidos() + ", " + empleado.getNombre() + ", " + empleado.getSalario());
                 escritura.newLine(); // moverse a la siguiente línea
