@@ -67,6 +67,7 @@ public class EmpleadosDOM {
                     consultarXML(dniConsultar);
                 break;
                 case 5: lecturaSax();
+                break;
                 default:
                     System.out.println("opcion no valida");
             }
@@ -98,12 +99,11 @@ public class EmpleadosDOM {
                     StringWriter writer = new StringWriter();
                     StreamResult result = new StreamResult(writer);
 
+
                     transformer.transform(source, result);
 
                     String empleadoXML = writer.toString();
-                    System.out.println("Empleado encontrado en formato XML:\n" + empleadoXML);
-
-                    return; // Terminar la búsqueda después de encontrar el empleado
+                    System.out.println("Empleado encontrado en  XML:\n" + empleadoXML);
                 }
             }
 
@@ -138,11 +138,11 @@ public class EmpleadosDOM {
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
                 DOMSource source = new DOMSource(doc);
                 StreamResult result = new StreamResult(archivo);
                 transformer.transform(source, result);
 
-                System.out.println("empleado borrado.");
 
             }
         }catch (Exception e) {
@@ -172,6 +172,7 @@ public class EmpleadosDOM {
                     TransformerFactory transformerFactory = TransformerFactory.newInstance();
                     Transformer transformer = transformerFactory.newTransformer();
                     transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
                     DOMSource source = new DOMSource(doc);
                     StreamResult result = new StreamResult(archivo);
                     transformer.transform(source, result);
@@ -182,8 +183,6 @@ public class EmpleadosDOM {
                     System.out.println("Dni no encontradooo");
                 }
             }
-
-            System.out.println("No se encontro ningún empleado .");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -239,6 +238,7 @@ public class EmpleadosDOM {
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+
 
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(registroEmpleados);

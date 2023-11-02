@@ -13,8 +13,11 @@ public class EmpleadoTXT {
 
         try (BufferedWriter escritura = new BufferedWriter(new FileWriter(ruta, false))) {
             for (Empleados empleado : listaEmpleados) {
-                escritura.write(empleado.getNIF() + "," + empleado.getApellidos() + ", " + empleado.getNombre() + ", " + empleado.getSalario());
-                escritura.newLine(); // moverse a la siguiente línea
+                if(!empleado.isBorrado()){//si no esta borrado lo muestra, sino al borrar en el array no lo borraba en el txt
+                    escritura.write(empleado.getNIF() + "," + empleado.getApellidos() + ", " + empleado.getNombre() + ", " + empleado.getSalario());
+                    escritura.newLine(); // moverse a la siguiente línea
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();

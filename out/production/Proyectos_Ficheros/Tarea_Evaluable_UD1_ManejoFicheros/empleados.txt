@@ -6,4 +6,3 @@
 88888888F,teis, brais, 10000.0
 12312323P,garcia, pepito, 1000.0
 45645656F,martinez, javier, 1980.45
-19283746F,Viera, Elias, 13123.0

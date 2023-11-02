@@ -157,7 +157,7 @@ public class Principal {
             opcion = br.readLine();
 
         } while (opcion.equalsIgnoreCase("s"));
-
+        //añadir empleado al txt
         empleadoTXT.escrituraEmpleados(listadoEmpleados);
     }
 
@@ -190,9 +190,11 @@ public class Principal {
             System.out.println("Quieres modificar salario de otro empleado? (s/n)");
             opcion = br.readLine();
         } while (opcion.equalsIgnoreCase("s"));
+        //actualizar el txt con el salario modificado
         empleadoTXT.escrituraEmpleados(listadoEmpleados);
 
     }
+
 
     public static void borrado() throws IOException {
 
@@ -235,6 +237,8 @@ public class Principal {
             System.out.println("Quieres borrar otro empleado? (s/n)");
             opcion = br.readLine();
         } while (opcion.equalsIgnoreCase("s"));
+
+
         empleadoTXT.escrituraEmpleados(listadoEmpleados);
 
     }

@@ -40,12 +40,6 @@ public class Empleados implements Serializable {
         if (!validaDNI_Exp(NIF)) {
             throw new Exception("DNI inválido.");
         }
-        if (!validarNombre(nombre)) {
-            throw new Exception("Nombre no valido.");
-        }
-        if (!validarApellido(apellidos)){
-            throw new Exception("Apellido no valido.");
-        }
         this.NIF = NIF;
         this.nombre = nombre;
         this.apellidos = apellidos;
