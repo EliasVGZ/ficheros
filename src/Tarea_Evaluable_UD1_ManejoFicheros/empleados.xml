@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <empleados>
-                    
+                                
+    
+    
+    
     
     
     
     <empleado>
-                                        
+                                                                
+        
+        
+        
         
         
         
         <nif>34534556L</nif>
-                                        
+                                                                
+        
+        
+        
         
         
         
         <nombre>PEPE</nombre>
-                                        
+                                                                
+        
+        
+        
         
         
         
         <apellido>CARRRDOZO</apellido>
-                                        
+                                                                
+        
+        
+        
         
         
         
         <salario>1345.0</salario>
-                                    
+                                                            
+    
+    
+    
     
     
     
     </empleado>
-                
+                            
     
     
     
 
+
+
+    
+    
+    
 
 </empleados>
